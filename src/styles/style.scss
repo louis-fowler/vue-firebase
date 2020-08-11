@@ -1,0 +1,32 @@
+$main-colour: rgb(231, 0, 0);
+
+h3 {
+  text-align: center;
+}
+
+.flex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* form */
+.formContainer {
+  padding-bottom: 4vh;
+}
+
+.inputContainer {
+  width: 15vw;
+
+  textarea {
+    padding-top: 1vh;
+    padding-bottom: 2vh;
+  }
+}
+
+/* display */
+.displayContainer {
+  border-radius: 3px;
+  background-color: aquamarine;
+  width: 35vw;
+}

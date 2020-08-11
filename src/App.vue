@@ -1,14 +1,22 @@
 <template>
-  <div class="app"></div>
+  <div class="app flex">
+    <Header />
+    <MainContent />
+  </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
-
+import Header from "./components/Header";
+import MainContent from "./components/MainContent";
 export default {
   name: "App",
-  components: {}
+  components: {
+    Header,
+    MainContent
+  }
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+@import "./styles/style.scss";
+</style>
