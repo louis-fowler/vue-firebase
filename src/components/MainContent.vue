@@ -1,7 +1,7 @@
 <template>
   <div>
     <Form />
-    <Display />
+    <Display :message="message" />
   </div>
 </template>
 
@@ -10,6 +10,12 @@ import Display from "./Display";
 import Form from "./Form";
 export default {
   name: "MainContent",
+
+  data() {
+    return {
+      message: "hello there"
+    };
+  },
 
   components: {
     Display,

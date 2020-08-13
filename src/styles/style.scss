@@ -24,9 +24,15 @@ h3 {
   }
 }
 
+.error {
+  color: rgb(194, 0, 0);
+}
+
 /* display */
-.displayContainer {
+
+.post {
   border-radius: 3px;
   background-color: aquamarine;
   width: 35vw;
+  margin-bottom: 10px;
 }
