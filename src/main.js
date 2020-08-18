@@ -1,11 +1,11 @@
 import Vue from "vue";
 import { firestorePlugin, rtdbPlugin } from "vuefire";
-import App from "./App.vue";
+import router from "./routes";
 
 Vue.use(firestorePlugin, rtdbPlugin);
 
 Vue.config.productionTip = false;
 
 new Vue({
-  render: h => h(App)
+  router
 }).$mount("#app");

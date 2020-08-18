@@ -1,19 +1,22 @@
 <template>
   <div class="app flex">
-    <Header />
-    <MainContent />
+    <router-link to="/test1"></router-link>
+    <router-link to="/test2"></router-link>
+    <router-view></router-view>
+    <!-- <Header />
+    <MainContent /> -->
   </div>
 </template>
 
 <script>
-import Header from "./components/Header";
-import MainContent from "./components/MainContent";
+// import Header from "./components/Header";
+// import MainContent from "./components/MainContent";
 export default {
-  name: "App",
-  components: {
-    Header,
-    MainContent
-  }
+  name: "App"
+  // components: {
+  //   Header,
+  //   MainContent
+  // }
 };
 </script>
 
