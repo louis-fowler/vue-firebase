@@ -1,8 +1,8 @@
 <template>
   <div class="flex">
-    <h1>Cool Blo</h1>
+    <h1>Cool Blog</h1>
     <p>{{ email }}</p>
-    <button>Logout</button>
+    <button v-on:click="logOut">Logout</button>
   </div>
 </template>
 
@@ -12,16 +12,22 @@ export default {
   name: "Header",
   data() {
     return {
-      userId: "",
+      userId: "test",
       email: "",
       user: {}
     };
   },
   created() {
-    this.user = firebase.auth().currentUser;
-    if (this.user) {
-      this.email = this.user.email;
-      this.userId = this.user.uid;
+    firebase.auth().onAuthStateChanged(user => {
+      this.userId = user.uid;
+      this.email = user.email;
+      this.user = user;
+    });
+  },
+  methods: {
+    logOut() {
+      firebase.auth().signOut();
+      this.$router.push("/");
     }
   }
 };

@@ -2,24 +2,25 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import MainContent from "../views/MainContent.vue";
 import SignIn from "../views/SignIn.vue";
+import firebase from "firebase";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "SignIn",
-    component: SignIn
+    component: SignIn,
+    name: "SignIn"
   },
   {
     path: "/main",
-    name: "Main",
-    component: MainContent
-    // beforeEnter: (to, from, next) => {
-    //   console.log("checkuser", firebase.auth().currentUser);
-    //   if (firebase.auth().currentUser === null) next({ name: "SignIn" });
-    //   else next();
-    // }
+    component: MainContent,
+    beforeEnter: (to, from, next) => {
+      firebase.auth().onAuthStateChanged(user => {
+        if (user === null) next({ name: "SignIn" });
+        else next();
+      });
+    }
   }
   // {
   //   path: "/about",
