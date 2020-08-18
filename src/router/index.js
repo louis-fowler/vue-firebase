@@ -10,11 +10,18 @@ const routes = [
   {
     path: "/",
     component: SignIn,
-    name: "SignIn"
+    name: "SignIn",
+    beforeEnter: (to, from, next) => {
+      firebase.auth().onAuthStateChanged(user => {
+        if (user !== null) next({ name: "Main" });
+        else next();
+      });
+    }
   },
   {
     path: "/main",
     component: MainContent,
+    name: "Main",
     beforeEnter: (to, from, next) => {
       firebase.auth().onAuthStateChanged(user => {
         if (user === null) next({ name: "SignIn" });
