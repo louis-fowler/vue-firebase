@@ -8,12 +8,18 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/",
-    name: "Home",
+    name: "SignIn",
     component: SignIn
   },
   {
     path: "/main",
+    name: "Main",
     component: MainContent
+    // beforeEnter: (to, from, next) => {
+    //   console.log("checkuser", firebase.auth().currentUser);
+    //   if (firebase.auth().currentUser === null) next({ name: "SignIn" });
+    //   else next();
+    // }
   }
   // {
   //   path: "/about",

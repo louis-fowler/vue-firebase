@@ -1,11 +1,15 @@
 <template>
-  <div><p>hello world</p></div>
+  <div>
+    <div id="firebaseui-auth-container"></div>
+    <div id="loader">Loading...</div>
+  </div>
 </template>
 
 <script>
+import { ui, uiConfig } from "../auth/fireauth";
 export default {
   name: "SignIn"
 };
-</script>
 
-<style lang="scss" scoped></style>
+ui.start("#firebaseui-auth-container", uiConfig);
+</script>

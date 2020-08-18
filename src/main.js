@@ -1,6 +1,7 @@
 import Vue from "vue";
 import { firestorePlugin, rtdbPlugin } from "vuefire";
 import App from "./App.vue";
+import "firebaseui/dist/firebaseui.css";
 
 import router from "./router";
 
