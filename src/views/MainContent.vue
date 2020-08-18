@@ -1,13 +1,15 @@
 <template>
   <div>
+    <Header />
     <Form />
     <Display :message="message" />
   </div>
 </template>
 
 <script>
-import Display from "./Display";
-import Form from "./Form";
+import Header from "../components/Header";
+import Display from "../components/Display";
+import Form from "../components/Form";
 export default {
   name: "MainContent",
 
@@ -19,7 +21,8 @@ export default {
 
   components: {
     Display,
-    Form
+    Form,
+    Header
   }
 };
 </script>
