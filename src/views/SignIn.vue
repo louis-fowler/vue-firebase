@@ -8,8 +8,9 @@
 <script>
 import { ui, uiConfig } from "../auth/fireauth";
 export default {
-  name: "SignIn"
+  name: "SignIn",
+  mounted() {
+    ui.start("#firebaseui-auth-container", uiConfig);
+  }
 };
-
-ui.start("#firebaseui-auth-container", uiConfig);
 </script>
