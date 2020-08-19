@@ -3,11 +3,10 @@
     <h3>Enter post here</h3>
     <form class="inputContainer flex">
       <p v-if="error" class="error">
-        Please fill in both the name and index fields
+        Please fill in text field
       </p>
-      <input v-model="newPost.name" type="text" placeholder="name" required />
       <textarea
-        v-model="newPost.text"
+        v-model="text"
         name=""
         id=""
         cols="30"
@@ -28,24 +27,30 @@ export default {
 
   data() {
     return {
-      newPost: {
-        name: "",
-        text: ""
-      },
+      text: "",
+      name: "",
       error: false
     };
+  },
+
+  mounted() {
+    this.name = localStorage.getItem("email");
   },
 
   methods: {
     addPosts: function(e) {
       e.preventDefault();
       this.error = false;
-      let { name, text } = this.newPost;
-      name === "" || text === ""
+      let { text, name } = this;
+      text === ""
         ? (this.error = true)
-        : postRef.add({ name, text, createdAt: Date.now() });
-      this.newPost.name = "";
-      this.newPost.text = "";
+        : postRef.add({
+            userId: localStorage.getItem("id"),
+            name,
+            text,
+            createdAt: Date.now()
+          });
+      this.text = "";
     }
   }
 };

@@ -1,11 +1,20 @@
 <template>
-  <div class="flex">
-    <div class="post flex" v-for="(post, index) in posts" :key="index">
-      <p>Username: {{ post.name }}</p>
-      <p>{{ post.text }}</p>
-      <p>{{ dateParse(post.createdAt) }}</p>
-      <p v-on:click="deletePost(post.id)" class="error">remove</p>
+  <div>
+    <div class="flex" v-if="loaded">
+      <div class="post flex" v-for="post in posts" :key="post.id">
+        <p>By: {{ post.name }}</p>
+        <p>{{ post.text }}</p>
+        <p>{{ dateParse(post.createdAt) }}</p>
+        <p
+          v-if="post.userId === userId"
+          v-on:click="deletePost(post.id)"
+          class="error"
+        >
+          remove
+        </p>
+      </div>
     </div>
+    <div v-else><p>Loading...</p></div>
   </div>
 </template>
 
@@ -16,7 +25,9 @@ export default {
 
   data() {
     return {
-      posts: []
+      posts: [],
+      loaded: false,
+      userId: ""
     };
   },
 
@@ -29,8 +40,9 @@ export default {
     }
   },
 
-  firestore: {
-    posts: postRef.orderBy("createdAt", "desc").limit(10)
+  mounted() {
+    this.$bind("posts", postRef).then(() => (this.loaded = true));
+    this.userId = localStorage.getItem("id");
   },
 
   computed: {

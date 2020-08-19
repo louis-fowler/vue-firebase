@@ -2,11 +2,12 @@
   <div>
     <Header />
     <Form />
-    <Display :message="message" />
+    <Display />
   </div>
 </template>
 
 <script>
+import firebase from "firebase";
 import Header from "../components/Header";
 import Display from "../components/Display";
 import Form from "../components/Form";
@@ -14,9 +15,14 @@ export default {
   name: "MainContent",
 
   data() {
-    return {
-      message: "hello there"
-    };
+    return {};
+  },
+
+  mounted() {
+    firebase.auth().onAuthStateChanged(user => {
+      localStorage.setItem("email", user.email);
+      localStorage.setItem("id", user.uid);
+    });
   },
 
   components: {

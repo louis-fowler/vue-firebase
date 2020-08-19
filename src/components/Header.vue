@@ -17,13 +17,13 @@ export default {
       user: {}
     };
   },
-  created() {
-    firebase.auth().onAuthStateChanged(user => {
-      this.userId = user.uid;
-      this.email = user.email;
-      this.user = user;
-    });
-  },
+  // created() {
+  //   firebase.auth().onAuthStateChanged(user => {
+  //     this.userId = user.uid;
+  //     this.email = user.email;
+  //     this.user = user;
+  //   });
+  // },
   methods: {
     logOut() {
       this.$router.push("/");
