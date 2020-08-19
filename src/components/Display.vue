@@ -7,7 +7,7 @@
         <p>{{ dateParse(post.createdAt) }}</p>
         <p
           v-if="post.userId === userId"
-          v-on:click="deletePost(post.id)"
+          v-on:click="deletePost(post.id, post.userId)"
           class="error"
         >
           remove
@@ -27,7 +27,7 @@ export default {
     return {
       posts: [],
       loaded: false,
-      userId: ""
+      userId: localStorage.getItem("id")
     };
   },
 
@@ -35,14 +35,15 @@ export default {
     dateParse: date => {
       return new Date(date).toLocaleString();
     },
-    deletePost: id => {
-      postRef.doc(id).delete();
+    deletePost: (id, userId) => {
+      userId === localStorage.getItem("id")
+        ? postRef.doc(id).delete()
+        : alert("nice try");
     }
   },
 
   mounted() {
     this.$bind("posts", postRef).then(() => (this.loaded = true));
-    this.userId = localStorage.getItem("id");
   },
 
   computed: {
