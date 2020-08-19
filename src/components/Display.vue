@@ -48,8 +48,6 @@ export default {
 
   computed: {
     console: () => console
-  },
-
-  props: ["message"]
+  }
 };
 </script>
