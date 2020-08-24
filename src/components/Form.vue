@@ -1,7 +1,6 @@
 <template>
   <div class="formContainer flex">
     <h3>Enter post here</h3>
-    <p>{{ user.data.email }}</p>
     <form class="inputContainer flex">
       <p v-if="error" class="error">
         Please fill in text field
@@ -35,13 +34,7 @@ export default {
   },
 
   mounted() {
-    this.name = localStorage.getItem("email");
-  },
-
-  computed: {
-    user() {
-      return this.$store.getters.user;
-    }
+    this.name = this.$store.getters.user.data.email;
   },
 
   methods: {
@@ -52,7 +45,7 @@ export default {
       text === ""
         ? (this.error = true)
         : postRef.add({
-            userId: localStorage.getItem("id"),
+            userId: this.$store.getters.user.data.uid,
             name,
             text,
             createdAt: Date.now()
