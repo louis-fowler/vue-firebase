@@ -43,7 +43,9 @@ export default {
   },
 
   mounted() {
-    this.$bind("posts", postRef).then(() => (this.loaded = true));
+    this.$bind("posts", postRef.orderBy("createdAt", "desc").limit(10)).then(
+      () => (this.loaded = true)
+    );
   },
 
   computed: {
