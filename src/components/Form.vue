@@ -1,6 +1,7 @@
 <template>
   <div class="formContainer flex">
     <h3>Enter post here</h3>
+    <p>{{ user.data.email }}</p>
     <form class="inputContainer flex">
       <p v-if="error" class="error">
         Please fill in text field
@@ -35,6 +36,12 @@ export default {
 
   mounted() {
     this.name = localStorage.getItem("email");
+  },
+
+  computed: {
+    user() {
+      return this.$store.getters.user;
+    }
   },
 
   methods: {

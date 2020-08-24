@@ -1,5 +1,6 @@
 const firebase = require("firebase");
 import * as firebaseui from "firebaseui";
+import store from "../store";
 
 const ui = new firebaseui.auth.AuthUI(firebase.auth());
 
@@ -19,5 +20,9 @@ const uiConfig = {
     }
   ]
 };
+
+firebase.auth().onAuthStateChanged(user => {
+  store.dispatch("fetchUser", user);
+});
 
 export { ui, uiConfig };
